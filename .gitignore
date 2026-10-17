@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+sanity/node_modules/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+sanity/.env
+sanity/.env.*
+!sanity/.env.example
+
+# Build output
+dist/
+build/
+sanity/dist/
+
+# Sanity local state
+.sanity/
+sanity/.sanity/
+sanity/.cache/
+sanity/.local/
+
+# Logs and OS files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.local
