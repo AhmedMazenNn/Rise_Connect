@@ -21,7 +21,10 @@ export function Logo({ companyName, logoUrl, variant = 'compact' }: LogoProps) {
   const src = logoUrl || DEFAULT_LOGO_URL;
 
   if (variant === 'full') {
-    return <img src={src} alt={companyName} style={knockoutStyle} className="-ml-3 h-32 w-32 object-contain" />;
+    return <span className="flex items-center gap-3">
+      <img src={src} alt="" aria-hidden="true" style={knockoutStyle} className="-ml-3 h-24 w-24 shrink-0 object-contain" />
+      <span className="font-display text-2xl font-extrabold tracking-tight text-white">{companyName}</span>
+    </span>;
   }
 
   return (

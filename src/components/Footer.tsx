@@ -94,9 +94,11 @@ export function Footer({ settings }: {settings: SiteSettings;}) {
             }
             {settings.address &&
             <address className="mt-7 not-italic text-sm leading-relaxed text-white/60">
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/45">Business contact</div>
               <div>{settings.address.street}</div>
               <div>{settings.address.cityStateZip}</div>
-              <a className="mt-1 inline-block text-white/75 hover:text-white" href={`tel:${settings.address.phone}`}>
+              <a className="mt-3 inline-flex items-center rounded-lg border border-white/20 bg-white/10 px-3 py-2 text-base font-semibold tracking-wide text-white transition-colors hover:border-white/50 hover:bg-white/15" href={`tel:${settings.address.phone}`}>
+                <span className="mr-2 text-xs font-normal uppercase tracking-[0.12em] text-white/60">Phone</span>
                 {settings.address.phone}
               </a>
             </address>
@@ -106,7 +108,11 @@ export function Footer({ settings }: {settings: SiteSettings;}) {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} {settings.companyName}. All rights reserved.</p>
-          <p>Serving real estate investors and small businesses across the United States.</p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-2">
+            <a href="/privacy-policy" className="hover:text-white">Privacy Policy</a>
+            <a href="/terms-and-conditions" className="hover:text-white">Terms &amp; Conditions</a>
+            <a href="/refund-policy" className="hover:text-white">Refund Policy</a>
+          </nav>
         </div>
       </div>
     </footer>);
