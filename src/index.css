@@ -27,3 +27,7 @@ body {
 .text-pretty {
   text-wrap: pretty;
 }
+.legal-content { margin-top: 3rem; color: rgb(33 24 47 / 0.78); }
+.legal-content h2 { margin-top: 2.25rem; color: #21182f; font-family: 'Manrope', sans-serif; font-size: 1.25rem; font-weight: 700; }
+.legal-content p { margin-top: .75rem; line-height: 1.8; }
+.legal-content a { color: #6d4aff; text-decoration: underline; text-underline-offset: 3px; }
