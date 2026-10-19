@@ -1,14 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react';
-import { GmailIcon } from './icons/GmailIcon';
 import { DiscordIcon } from './icons/DiscordIcon';
 import { SlackIcon } from './icons/SlackIcon';
 import { SectionHeading } from './SectionHeading';
 import { PlaceholderBadge } from './PlaceholderBadge';
 import { SlackMessageForm } from './SlackMessageForm';
-import { useCoarsePointer } from '../hooks/useCoarsePointer';
-import { gmailComposeUrl, isValidEmail, isValidUrl, mailtoUrl } from '../utils/contact';
+import { isValidUrl } from '../utils/contact';
 import { isValidSlackWebhook } from '../utils/slack';
 import { showPlaceholders } from '../utils/sanity';
 import type { HomepageContent, SiteSettings } from '../types/content';
@@ -32,10 +30,8 @@ interface ContactChannel {
 }
 
 export function Contact({ home, settings }: ContactProps) {
-  const coarse = useCoarsePointer();
   const [slackOpen, setSlackOpen] = useState(false);
   const closeSlack = useCallback(() => setSlackOpen(false), []);
-  const email = isValidEmail(settings.contactEmail) ? settings.contactEmail.trim() : undefined;
   const slackDestination = isValidUrl(settings.slackEndpointUrl)
     ? settings.slackEndpointUrl.trim()
     : isValidSlackWebhook(settings.slackWebhookUrl)
@@ -43,18 +39,6 @@ export function Contact({ home, settings }: ContactProps) {
       : undefined;
 
   const channels: ContactChannel[] = [
-  {
-    id: 'gmail',
-    platform: 'Gmail',
-    label: 'Contact via Gmail',
-    description: 'Send us a message and we’ll reply by email.',
-    icon: <GmailIcon className="h-7 w-7" />,
-    kind: 'link',
-    href: email ? coarse ? mailtoUrl(email) : gmailComposeUrl(email) : undefined,
-    newTab: !coarse,
-    available: !!email,
-    settingName: 'contact email'
-  },
   {
     id: 'discord',
     platform: 'Discord',
@@ -121,14 +105,6 @@ export function Contact({ home, settings }: ContactProps) {
         <p className="mt-12 text-center text-white/70">Contact options will be available shortly.</p>
         }
 
-        {email &&
-        <p className="mt-8 text-center text-sm text-white/65">
-            Prefer your own email app?{' '}
-            <a href={mailtoUrl(email)} className="font-semibold text-white underline decoration-brand-lavender underline-offset-4 hover:decoration-white focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-brand-lavender">
-              {email}
-            </a>
-          </p>
-        }
       </div>
       <SlackMessageForm open={slackOpen} onClose={closeSlack} endpointUrl={slackDestination} />
     </section>);
