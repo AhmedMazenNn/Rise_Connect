@@ -11,7 +11,7 @@ import type { SiteSettings } from '../types/content';
 export function Footer({ settings }: {settings: SiteSettings;}) {
   const year = new Date().getFullYear();
   const contacts = [
-  isValidEmail(settings.contactEmail) && { id: 'gmail', label: 'Gmail', href: gmailComposeUrl(settings.contactEmail), icon: <GmailIcon className="h-4 w-4" /> },
+  isValidEmail(settings.contactEmail) && { id: 'gmail', label: settings.contactEmail, href: gmailComposeUrl(settings.contactEmail), icon: <GmailIcon className="h-4 w-4" /> },
   isValidUrl(settings.discordUrl) && { id: 'discord', label: 'Discord', href: settings.discordUrl, icon: <DiscordIcon className="h-4 w-4" /> }].
   filter(Boolean) as {id: string;label: string;href: string;icon: React.ReactNode;}[];
   const socials = settings.socialLinks.filter((link) => link.label && isValidUrl(link.url));

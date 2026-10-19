@@ -1,7 +1,7 @@
 import type { HomepageContent, Service, SiteSettings, Testimonial } from '../types/content';
 
 export const defaultSettings: SiteSettings = {
-  companyName: 'Rise and Connect', contactEmail: '', discordUrl: '', slackWebhookUrl: '', slackEndpointUrl: '',
+  companyName: 'Rise and Connect', contactEmail: 'Info@riseandconnect.solutions', discordUrl: '', slackWebhookUrl: '', slackEndpointUrl: '',
   address: { street: '30 N Gould St Ste R', cityStateZip: 'Sheridan, WY 82801', phone: '+13073028248' },
   socialLinks: [], seoTitle: 'Rise and Connect — Virtual Assistants & Lead Generation',
   seoDescription: 'Rise and Connect helps real estate investors and growing businesses streamline outreach, manage leads, and build efficient sales pipelines with reliable virtual assistance and lead generation support.',
