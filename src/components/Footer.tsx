@@ -1,17 +1,15 @@
 import React from 'react';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { Logo } from './Logo';
-import { GmailIcon } from './icons/GmailIcon';
 import { DiscordIcon } from './icons/DiscordIcon';
 import { navItems } from '../content/defaultContent';
 import { scrollToSection } from '../utils/scroll';
-import { gmailComposeUrl, isValidEmail, isValidUrl } from '../utils/contact';
+import { isValidEmail, isValidUrl } from '../utils/contact';
 import type { SiteSettings } from '../types/content';
 
 export function Footer({ settings }: {settings: SiteSettings;}) {
   const year = new Date().getFullYear();
   const contacts = [
-  isValidEmail(settings.contactEmail) && { id: 'gmail', label: settings.contactEmail, href: gmailComposeUrl(settings.contactEmail), icon: <GmailIcon className="h-4 w-4" /> },
   isValidUrl(settings.discordUrl) && { id: 'discord', label: 'Discord', href: settings.discordUrl, icon: <DiscordIcon className="h-4 w-4" /> }].
   filter(Boolean) as {id: string;label: string;href: string;icon: React.ReactNode;}[];
   const socials = settings.socialLinks.filter((link) => link.label && isValidUrl(link.url));
@@ -47,8 +45,11 @@ export function Footer({ settings }: {settings: SiteSettings;}) {
 
           <div className="md:col-span-4">
             <h2 className="text-sm font-semibold text-white">Get in touch</h2>
+            {isValidEmail(settings.contactEmail) &&
+            <p className="mt-5 text-sm text-white/70">{settings.contactEmail}</p>
+            }
             {contacts.length > 0 ?
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-3">
                 {contacts.map((contact) =>
               <li key={contact.id}>
                     <a
